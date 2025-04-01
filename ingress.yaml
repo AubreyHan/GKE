@@ -1,0 +1,19 @@
+     apiVersion: networking.k8s.io/v1
+     kind: Ingress
+     metadata:
+       name: my-ingress
+       annotations:
+         networking.gke.io/load-balancer-type: "Regional"
+         cloud.google.com/network-tier: "Standard"  # 指定标准层级
+     spec:
+       rules:
+       - host: myapp.example.com  # 替换为你的域名
+         http:
+           paths:
+           - path: /
+             pathType: Prefix
+             backend:
+               service:
+                 name: my-app-service
+                 port:
+                   number: 80
